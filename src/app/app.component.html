@@ -1,0 +1,30 @@
+<div class="drop-zone">
+  <label class="custom-file-upload">
+    <input (change)="onFileChange($event)" type="file"/>
+  </label>
+
+  <div class="content">
+  <div class="dropbox-options">
+    <div *ngFor="let option of imgArrays"
+         [draggable]="true"
+         [class.dragging]="dragging"
+         (dragstart)="onOptionDragStart($event, option)"
+         (dragend)="onOptionDragEnd()"
+         class="dropbox-option">
+      <img [src]="option"/>
+    </div>
+  </div>
+
+  <div #vc class="gaps">
+    <div class="variants">
+      <div *ngFor="let gap of gapsArrays; index as i" class="gap gap_{{i}}"
+           (dragover)="onDragOver($event)"
+           (drop)="onDropSuccess($event, i)"
+           [style.background-image]="'url(' + gap?.url + ')'">
+      </div>
+    </div>
+  </div>
+</div>
+</div>
+
+<router-outlet />

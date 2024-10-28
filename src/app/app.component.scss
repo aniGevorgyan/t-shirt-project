@@ -1,0 +1,139 @@
+.custom-file-upload {
+  margin-bottom: 20px;
+}
+
+.content {
+  display: flex;
+}
+
+.dropbox-options {
+  flex: 1;
+  display: flex;
+  gap: 20px;
+  flex-wrap: wrap;
+
+  .dropbox-option {
+    border-radius: 5px;
+    height: max-content;
+    width: fit-content;
+    background-size: contain;
+    user-select: none;
+    box-shadow: 0 5px 5px -3px rgba(0, 0, 0, .1),
+    0 8px 10px 1px rgba(0, 0, 0, .1),
+    0 3px 14px 2px rgba(0, 0, 0, .1);
+    background-size: contain;
+
+    img {
+      max-width: 200px;
+      height: auto;
+    }
+
+    &.dragging {
+      filter: grayscale(1);
+      opacity: .5;
+      pointer-events: none;
+    }
+  }
+}
+
+.gaps {
+  flex: 1;
+  height: 100vh;
+  background-image: url("../assets/images/t-shirt.png");
+  background-repeat: no-repeat;
+  background-size: contain;
+  background-position: center;
+
+  .variants {
+    width: 250px;
+    height: 250px;
+    display: flex;
+    flex-wrap: wrap;
+    margin: 20% auto;
+    gap: 20px;
+    position: relative;
+  }
+
+  .gap {
+    border-radius: 5px;
+    //border: 1px dashed lightgray;
+    height: 50px;
+    width: 100px;
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center;
+    position: absolute;
+
+    &_0 {
+      width: 50px;
+    }
+
+    &_1 {
+      right: 0;
+    }
+
+    &_2 {
+      height: 150px;
+      width: 150px;
+      bottom: 0;
+      left: 20%;
+    }
+
+    &.answer_visible {
+      width: 100%;
+    }
+
+    &:hover {
+      > .close {
+        visibility: visible;
+      }
+    }
+
+    &--drag-end {
+      position: relative;
+    }
+
+    &--drag-wait {
+      border: 1px dashed skyblue;
+    }
+
+    //.placeholder {
+    //  color: $gap-placeholder-text;
+    //  font-size: inherit;
+    //  line-height: inherit;
+    //  font-weight: inherit;
+    //}
+
+    //.value {
+    //  color: $white-color;
+    //  font-size: inherit;
+    //  line-height: 26px;
+    //  font-weight: inherit;
+    //  opacity: 1;
+    //  vertical-align: top;
+    //  display: inline-block;
+    //  max-width: 720px;
+    //  width: calc(100% + 3px);
+    //  height: max-content;
+    //}
+
+    //.close {
+    //  background: $white-color;
+    //  border: 1px solid $gap-close;
+    //  border-radius: 50%;
+    //  box-sizing: border-box;
+    //  color: $gap-close;
+    //  font-size: 12px;
+    //  height: 16px;
+    //  line-height: 13px;
+    //  position: absolute;
+    //  right: -7px;
+    //  text-align: center;
+    //  top: -7px;
+    //  transition: all $transition-time linear;
+    //  visibility: hidden;
+    //  width: 16px;
+    //}
+  }
+}
+
