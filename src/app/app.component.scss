@@ -1,45 +1,83 @@
-.custom-file-upload {
-  margin-bottom: 20px;
+.drop-zone {
+  display: flex;
+
+  .images {
+    flex: 1;
+
+    .custom-file-upload {
+      display: flex;
+      width: fit-content;
+      margin-bottom: 20px;
+
+      input {
+        display: none;
+      }
+      .upload-placeholder {
+        display: flex;
+        align-items: center;
+        cursor: pointer;
+        padding: 20px;
+        border: 1px dashed #5AB3E4;
+        border-radius: 10px;
+        background: #f5f8fa;
+        color: #1e252b;
+        transition: all .2s linear;
+
+        svg {
+          width: 50px;
+          height: 50px;
+          fill: #5ab3e4;
+        }
+
+        &:hover {
+          background: #e6f6ff;
+          opacity: .6;
+        }
+      }
+    }
+
+    .dropbox-options {
+      flex: 1;
+      display: flex;
+      gap: 20px;
+      flex-wrap: wrap;
+
+      .dropbox-option {
+        border-radius: 5px;
+        height: max-content;
+        width: fit-content;
+        background-size: contain;
+        user-select: none;
+
+        img {
+          max-width: 200px;
+          height: auto;
+        }
+
+        &.dragging {
+          filter: grayscale(1);
+          opacity: .5;
+          pointer-events: none;
+          box-shadow: 0 5px 5px -3px rgba(0, 0, 0, .1),
+          0 8px 10px 1px rgba(0, 0, 0, .1),
+          0 3px 14px 2px rgba(0, 0, 0, .1);
+        }
+      }
+    }
+
+  }
 }
 
 .content {
   display: flex;
-}
-
-.dropbox-options {
   flex: 1;
-  display: flex;
-  gap: 20px;
-  flex-wrap: wrap;
-
-  .dropbox-option {
-    border-radius: 5px;
-    height: max-content;
-    width: fit-content;
-    background-size: contain;
-    user-select: none;
-    box-shadow: 0 5px 5px -3px rgba(0, 0, 0, .1),
-    0 8px 10px 1px rgba(0, 0, 0, .1),
-    0 3px 14px 2px rgba(0, 0, 0, .1);
-    background-size: contain;
-
-    img {
-      max-width: 200px;
-      height: auto;
-    }
-
-    &.dragging {
-      filter: grayscale(1);
-      opacity: .5;
-      pointer-events: none;
-    }
-  }
 }
+
 
 .gaps {
   flex: 1;
   height: 100vh;
-  background-image: url("../assets/images/t-shirt.png");
+  background-image: url("/images/t-shirt.png");
   background-repeat: no-repeat;
   background-size: contain;
   background-position: center;
