@@ -84,4 +84,13 @@ export class AppComponent {
             this.imgArrays.push(reader.result);
         }
     }
+
+    public deleteImage(index: number) {
+        this.imgArrays = this.imgArrays.filter((el, key) => key !== index);
+    }
+
+    public removeGap(index: number) {
+        this.gapsArrays[index].url = null;
+    }
+
 }

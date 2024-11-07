@@ -1,3 +1,5 @@
+$container-width: 40%;
+
 .drop-zone {
   display: flex;
 
@@ -23,10 +25,9 @@
         color: #1e252b;
         transition: all .2s linear;
 
-        svg {
+        img {
           width: 50px;
           height: 50px;
-          fill: #5ab3e4;
         }
 
         &:hover {
@@ -48,8 +49,22 @@
         width: fit-content;
         background-size: contain;
         user-select: none;
+        position: relative;
 
-        img {
+        .close-icon {
+          width: 15px;
+          height: 15px;
+          position: absolute;
+          right: -10px;
+          top: -10px;
+          background: #fff;
+          border-radius: 50%;
+          border: 1px solid #f6f6f6;
+          padding: 10px;
+          cursor: pointer;
+        }
+
+        .uploaded-image {
           max-width: 200px;
           height: auto;
         }
@@ -75,43 +90,57 @@
 
 
 .gaps {
-  flex: 1;
-  height: 100vh;
-  background-image: url("/images/t-shirt.png");
-  background-repeat: no-repeat;
-  background-size: contain;
-  background-position: center;
+  height: 100%;
+  width: fit-content;
+  position: relative;
+
+  img {
+    width: 500px;
+    height: auto;
+  }
 
   .variants {
-    width: 250px;
-    height: 250px;
-    display: flex;
-    flex-wrap: wrap;
-    margin: 20% auto;
-    gap: 20px;
-    position: relative;
+    height: 40%;
+    width: $container-width;
+    position: absolute;
+    top: 20%;
+    left: calc((100% - $container-width)/2);
+
+    .close-icon {
+      width: 10px;
+      height: 10px;
+      position: absolute;
+      right: -10px;
+      top: -10px;
+      background: #fff;
+      border-radius: 50%;
+      border: 1px solid #f6f6f6;
+      padding: 10px;
+      cursor: pointer;
+    }
   }
 
   .gap {
     border-radius: 5px;
-    height: 50px;
-    width: 100px;
     background-size: contain;
     background-repeat: no-repeat;
     background-position: center;
     position: absolute;
 
     &_0 {
-      width: 50px;
+      height: 30%;
+      width: 30%;
     }
 
     &_1 {
       right: 0;
+      height: 30%;
+      width: 40%;
     }
 
     &_2 {
-      height: 150px;
-      width: 150px;
+      height: 50%;
+      width: 60%;
       bottom: 0;
       left: 20%;
     }
@@ -131,46 +160,14 @@
     }
 
     &--drag-wait {
-      border: 1px dashed skyblue;
+      outline: 1px dashed skyblue;
     }
+  }
+}
 
-    //.placeholder {
-    //  color: $gap-placeholder-text;
-    //  font-size: inherit;
-    //  line-height: inherit;
-    //  font-weight: inherit;
-    //}
-
-    //.value {
-    //  color: $white-color;
-    //  font-size: inherit;
-    //  line-height: 26px;
-    //  font-weight: inherit;
-    //  opacity: 1;
-    //  vertical-align: top;
-    //  display: inline-block;
-    //  max-width: 720px;
-    //  width: calc(100% + 3px);
-    //  height: max-content;
-    //}
-
-    //.close {
-    //  background: $white-color;
-    //  border: 1px solid $gap-close;
-    //  border-radius: 50%;
-    //  box-sizing: border-box;
-    //  color: $gap-close;
-    //  font-size: 12px;
-    //  height: 16px;
-    //  line-height: 13px;
-    //  position: absolute;
-    //  right: -7px;
-    //  text-align: center;
-    //  top: -7px;
-    //  transition: all $transition-time linear;
-    //  visibility: hidden;
-    //  width: 16px;
-    //}
+@media screen and (max-width: 640px) {
+  .drop-zone {
+    flex-direction: column;
   }
 }
 
