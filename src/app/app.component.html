@@ -1,12 +1,21 @@
 <div class="drop-zone">
     <div class="images">
+        <div class="actions">
         <label class="custom-file-upload">
-            <input #file (change)="onFileChange($event)" type="file"/>
+            <input (change)="onFileChange($event)" type="file"/>
             <div class="upload-placeholder">
                 <span>Upload file here</span>
                 <img class="icon__def" src="/images/upload.svg" />
             </div>
         </label>
+            <mat-form-field>
+                <mat-select [(value)]="type">
+                    <mat-option *ngFor="let item of types" [value]="item.value">
+                        {{item.label}}
+                    </mat-option>
+                </mat-select>
+            </mat-form-field>
+        </div>
         <span *ngIf="message">{{message}}</span>
         <div class="dropbox-options">
             <div (dragend)="onOptionDragEnd()"
@@ -23,13 +32,21 @@
 
     <div class="content">
         <div #vc class="gaps">
-            <img alt="image" src="/images/png-tr.png"/>
+                <img alt="image" src="/images/{{type}}.png"/>
             <div class="variants">
                 <div (dragover)="onDragOver($event)"
                      (touchend)="onDropSuccess($event, i)"
                      (drop)="onDropSuccess($event, i)"
                      *ngFor="let gap of gapsArrays; index as i"
                      [style.background-image]="'url(' + gap?.url + ')'"
+                     [ngStyle]="{
+                      width: gap?.width + '%',
+                      height: gap?.height + '%',
+                      top: gap?.top ? gap?.top + '%' : null,
+                      right: gap?.right ? gap?.right + '%' : null,
+                      bottom: gap?.bottom ? gap?.bottom + '%' : null,
+                      left: gap?.left ? gap?.left + '%' : null,
+                      }"
                      class="gap gap_{{i}}">
                     <img *ngIf="gap?.url" (click)="removeGap(i)" alt="close" class="close-icon" src="/images/close.svg" />
                 </div>

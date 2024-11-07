@@ -3,6 +3,15 @@ $container-width: 40%;
 .drop-zone {
   display: flex;
 
+  .actions {
+    display: flex;
+    gap: 20px;
+
+    mat-form-field {
+      height: fit-content;
+    }
+  }
+
   .images {
     flex: 1;
 
@@ -18,7 +27,7 @@ $container-width: 40%;
         display: flex;
         align-items: center;
         cursor: pointer;
-        padding: 20px;
+        padding: 5px 15px;
         border: 1px dashed #5AB3E4;
         border-radius: 10px;
         background: #f5f8fa;
@@ -126,24 +135,6 @@ $container-width: 40%;
     background-repeat: no-repeat;
     background-position: center;
     position: absolute;
-
-    &_0 {
-      height: 30%;
-      width: 30%;
-    }
-
-    &_1 {
-      right: 0;
-      height: 30%;
-      width: 40%;
-    }
-
-    &_2 {
-      height: 50%;
-      width: 60%;
-      bottom: 0;
-      left: 20%;
-    }
 
     &.answer_visible {
       width: 100%;

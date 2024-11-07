@@ -1,11 +1,14 @@
 import {ChangeDetectorRef, Component, ElementRef, ViewChild} from '@angular/core';
 import {RouterOutlet} from '@angular/router';
 import {CommonModule} from '@angular/common';
+import {FormsModule, ReactiveFormsModule} from "@angular/forms";
+import {MatFormField, MatOption, MatSelect} from "@angular/material/select";
+import {gapsCoordinatesTCap, gapsCoordinatesTShirt, IGap, types} from "./app.variables";
 
 @Component({
     selector: 'app-root',
     standalone: true,
-    imports: [RouterOutlet, CommonModule],
+    imports: [RouterOutlet, CommonModule, FormsModule, MatSelect, MatFormField, MatOption, ReactiveFormsModule,],
     templateUrl: './app.component.html',
     styleUrl: './app.component.scss'
 })
@@ -14,15 +17,16 @@ export class AppComponent {
     public message: string;
     public imagePath: string;
     public url: any;
+    public type = 't-shirt';
     public imgArrays: any[] = [];
-    public gapsArrays: any[] = [
-        {id: 1, url: null},
-        {id: 2, url: null},
-        {id: 3, url: null},
-    ];
+    public types = types;
     public dragOption: number | null;
 
     constructor(public cdr: ChangeDetectorRef) {
+    }
+
+    public get gapsArrays(): IGap[] {
+        return this.type === 't-shirt' ? gapsCoordinatesTShirt : gapsCoordinatesTCap;
     }
 
     public onDragOver(event: any) {
