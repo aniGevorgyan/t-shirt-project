@@ -1,0 +1,22 @@
+.sides-container {
+  display: flex;
+  gap: 10px;
+
+  .side {
+    cursor: pointer;
+    color: #1E252B;
+    padding: 5px 10px;
+    border: 1px solid #1E252B;
+    position: relative;
+
+    &.active {
+      border: 1px solid rgb(40, 201, 55);
+    }
+
+    .icon__def {
+      position: absolute;
+      right: -5px;
+      top: -5px;
+    }
+  }
+}

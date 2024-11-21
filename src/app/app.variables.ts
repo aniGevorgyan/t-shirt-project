@@ -1,5 +1,5 @@
 export interface IGap {
-    id: number;
+    code: string;
     url: string | null;
     height: string;
     width: string;
@@ -10,16 +10,16 @@ export interface IGap {
 }
 
 export const types = [
-    {value: 't-shirt', label: 'T shirt'},
-    {value: 'cap', label: 'Cap'},
+    {value: 'front', label: 'Front'},
+    {value: 'back', label: 'Back'},
+    {value: 'left', label: 'Left side'},
+    {value: 'right', label: 'Right side'},
 ];
 
 export const gapsCoordinatesTShirt: IGap[] = [
-    {id: 1, url: null, height: '30', width: '30'},
-    {id: 2, url: null, height: '30', width: '40', right: '0'},
-    {id: 3, url: null, height: '50', width: '60', bottom: '0', left: '20'},
+    {code: 'sdsd', url: null, height: '30', width: '30'},
 ];
 
 export const gapsCoordinatesTCap: IGap[] = [
-    {id: 1, url: null, height: '50', width: '80', left: '10', top: '20'},
+    {code: 'front', url: null, height: '50', width: '80', left: '10', top: '20'},
 ];

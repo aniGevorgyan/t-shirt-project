@@ -2,10 +2,23 @@ $container-width: 40%;
 
 .drop-zone {
   display: flex;
+  width: 1000px;
+  margin: 0 auto;
+  gap: 20px;
 
   .actions {
+    background: white;
     display: flex;
+    flex-direction: column;
     gap: 20px;
+    padding: 30px;
+    border-radius: 10px;
+    box-shadow: 0 10px 15px -3px rgba(0, 0, 0, .1), 0 4px 6px -4px rgba(0, 0, 0, .1);
+    transition: all 100ms ease-in;
+
+    &:hover {
+      box-shadow: 0 20px 25px -5px rgba(0, 0, 0, .1), 0 8px 10px -6px rgba(0, 0, 0, .1);
+    }
 
     mat-form-field {
       height: fit-content;
@@ -28,7 +41,7 @@ $container-width: 40%;
         align-items: center;
         cursor: pointer;
         padding: 5px 15px;
-        border: 1px dashed #5AB3E4;
+        border: 1px dashed gray;
         border-radius: 10px;
         background: #f5f8fa;
         color: #1e252b;
@@ -40,7 +53,7 @@ $container-width: 40%;
         }
 
         &:hover {
-          background: #e6f6ff;
+          background: #f1f1f1;
           opacity: .6;
         }
       }
@@ -53,7 +66,6 @@ $container-width: 40%;
       flex-wrap: wrap;
 
       .dropbox-option {
-        border-radius: 5px;
         height: max-content;
         width: fit-content;
         background-size: contain;
@@ -130,7 +142,6 @@ $container-width: 40%;
   }
 
   .gap {
-    border-radius: 5px;
     background-size: contain;
     background-repeat: no-repeat;
     background-position: center;
@@ -151,7 +162,7 @@ $container-width: 40%;
     }
 
     &--drag-wait {
-      outline: 1px dashed skyblue;
+      outline: 1px dashed gray;
     }
   }
 }

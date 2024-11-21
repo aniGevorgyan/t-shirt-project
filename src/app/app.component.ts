@@ -1,32 +1,68 @@
-import {ChangeDetectorRef, Component, ElementRef, ViewChild} from '@angular/core';
+import {AfterViewInit, ChangeDetectorRef, Component, ElementRef, ViewChild} from '@angular/core';
 import {RouterOutlet} from '@angular/router';
 import {CommonModule} from '@angular/common';
 import {FormsModule, ReactiveFormsModule} from "@angular/forms";
 import {MatFormField, MatOption, MatSelect} from "@angular/material/select";
 import {gapsCoordinatesTCap, gapsCoordinatesTShirt, IGap, types} from "./app.variables";
+import * as fabric from "fabric";
+import {FabricCanvasHandlers} from "./fabric-canvas-handlers";
+import {ColorsComponent} from "../components/colors/colors.component";
+import {SideComponent} from "../components/side/side.component";
 
 @Component({
     selector: 'app-root',
     standalone: true,
-    imports: [RouterOutlet, CommonModule, FormsModule, MatSelect, MatFormField, MatOption, ReactiveFormsModule,],
+    imports: [RouterOutlet, CommonModule, FormsModule, MatSelect, MatFormField, MatOption, ReactiveFormsModule, ColorsComponent, SideComponent,],
     templateUrl: './app.component.html',
     styleUrl: './app.component.scss'
 })
-export class AppComponent {
+export class AppComponent implements AfterViewInit {
     @ViewChild('vc', {static: true}) vc: ElementRef;
     public message: string;
     public imagePath: string;
+    public color: string = 'black';
+    public side: string = 'front';
+    protected canvas: any;
     public url: any;
-    public type = 't-shirt';
     public imgArrays: any[] = [];
-    public types = types;
     public dragOption: number | null;
+    protected handlers: FabricCanvasHandlers;
+
+    ngAfterViewInit() {
+        this.canvas = new fabric.Canvas('myCanvas_0');
+        this.handlers = new FabricCanvasHandlers(this.canvas);
+
+        this.canvas.on('object:moving', (e: any) => {
+            this.handlers.onObjectMoving(e);
+        });
+
+        this.canvas.on('object:scaling', (e: any) => {
+            this.handlers.onObjectScaling(e);
+        });
+
+        this.canvas.on('mouse:out', (e: any) => {
+            this.hidePossibleGaps();
+        });
+        this.canvas.on('mouse:over', (e: any) => {
+            this.showPossibleGaps();
+        });
+
+    }
 
     constructor(public cdr: ChangeDetectorRef) {
+
+    }
+
+    public onColorChange(e: string) {
+        this.color = e;
+    }
+
+    public onSideChange(e: string) {
+        this.side = e;
     }
 
     public get gapsArrays(): IGap[] {
-        return this.type === 't-shirt' ? gapsCoordinatesTShirt : gapsCoordinatesTCap;
+        return gapsCoordinatesTShirt;
     }
 
     public onDragOver(event: any) {
@@ -36,6 +72,8 @@ export class AppComponent {
     public onDropSuccess(event: any, index: number) {
         event.preventDefault();
         this.gapsArrays[index].url = event.dataTransfer.getData('url');
+        this.canvas.clear();
+        this.handlers.createImageFromCenter(event.dataTransfer.getData('url'));
     }
 
     public onOptionDragStart(event: any, option: any, index: number) {
@@ -95,6 +133,7 @@ export class AppComponent {
 
     public removeGap(index: number) {
         this.gapsArrays[index].url = null;
+        this.canvas.clear();
     }
 
 }
