@@ -18,6 +18,7 @@ export class GapComponent implements AfterViewInit {
   @Output() hideAreaBorders = new EventEmitter<void>();
   protected canvas: fabric.Canvas;
   protected handlers: FabricCanvasHandlers;
+  public showRemoveButton: boolean;
 
   ngAfterViewInit() {
     this.canvas = new fabric.Canvas('myCanvas_' + this.item.code);
@@ -31,11 +32,14 @@ export class GapComponent implements AfterViewInit {
       this.handlers.onObjectScaling(e);
     });
 
-    this.canvas.on('mouse:out', (e: any) => {
-      this.hideAreaBorders.emit();
-    });
-    this.canvas.on('mouse:over', (e: any) => {
+    this.canvas.on('selection:created', (o: any) => {
       this.showAreaBorders.emit();
+      this.showRemoveButton = true;
+    });
+
+    this.canvas.on('selection:cleared', () => {
+      this.hideAreaBorders.emit();
+      this.showRemoveButton = false;
     });
   }
 
@@ -50,4 +54,7 @@ export class GapComponent implements AfterViewInit {
     this.handlers.createImageFromCenter(event.dataTransfer.getData('url'));
   }
 
+  public removeGap() {
+    this.canvas.clear();
+  }
 }

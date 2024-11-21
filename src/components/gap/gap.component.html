@@ -8,6 +8,6 @@
       }"
      class="gap">
     <canvas class="gap" id="myCanvas_{{item.code}}" width="{{item.height}}" height="{{item.height}}"></canvas>
-<!--    <img *ngIf="item?.url" (click)="removeGap(i)" alt="close" class="close-icon"-->
-<!--         src="/images/close.svg"/>-->
+    <img *ngIf="showRemoveButton" (click)="removeGap()" alt="close" class="close-icon"
+         src="/images/close.svg"/>
 </div>
