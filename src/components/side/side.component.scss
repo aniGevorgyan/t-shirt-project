@@ -6,11 +6,11 @@
     cursor: pointer;
     color: #1E252B;
     padding: 5px 10px;
-    border: 1px solid #1E252B;
+    border: 1.5px solid #1E252B;
     position: relative;
 
     &.active {
-      border: 1px solid rgb(40, 201, 55);
+      border: 1.5px solid rgb(40, 201, 55);
     }
 
     .icon__def {

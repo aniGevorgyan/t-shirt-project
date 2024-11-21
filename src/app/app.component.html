@@ -1,26 +1,25 @@
 <div class="drop-zone">
     <div class="images">
         <div class="actions">
+            <p class="title">Tultex Adult Unisex Fine Jersey T-Shirt</p>
+            <p class="description">Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem
+                Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a
+                galley of type and scrambled it to make a type specimen book.</p>
             <app-colors (change)="onColorChange($event)"></app-colors>
             <app-side (change)="onSideChange($event)"></app-side>
-            <label class="custom-file-upload">
-                <input (change)="onFileChange($event)" type="file"/>
-                <div class="upload-placeholder">
-                <img class="icon__def" src="/images/upload.svg" />
+            <app-upload (onUpload)="onFileChange($event)"></app-upload>
+            <div class="dropbox-options">
+                <div (dragend)="onOptionDragEnd()"
+                     (dragstart)="onOptionDragStart($event, option, i)"
+                     *ngFor="let option of imgArrays; index as i"
+                     [class.dragging]="dragOption === i"
+                     [draggable]="true"
+                     class="dropbox-option">
+                    <img alt="close" class="close-icon" (click)="deleteImage(i)" src="/images/close.svg"/>
+                    <img alt="image" class="uploaded-image" src="{{option}}"/>
                 </div>
-            </label>
-        </div>
-        <span *ngIf="message">{{message}}</span>
-        <div class="dropbox-options">
-            <div (dragend)="onOptionDragEnd()"
-                 (dragstart)="onOptionDragStart($event, option, i)"
-                 *ngFor="let option of imgArrays; index as i"
-                 [class.dragging]="dragOption === i"
-                 [draggable]="true"
-                 class="dropbox-option">
-                <img alt="close" class="close-icon" (click)="deleteImage(i)" src="/images/close.svg" />
-                <img alt="image" class="uploaded-image" src="{{option}}"/>
             </div>
+            <app-quantity></app-quantity>
         </div>
     </div>
 
@@ -42,7 +41,8 @@
                       }"
                      class="gap">
                     <canvas class="gap" id="myCanvas_{{i}}" width="150" height="150"></canvas>
-                    <img *ngIf="gap?.url" (click)="removeGap(i)" alt="close" class="close-icon" src="/images/close.svg" />
+                    <img *ngIf="gap?.url" (click)="removeGap(i)" alt="close" class="close-icon"
+                         src="/images/close.svg"/>
                 </div>
             </div>
         </div>

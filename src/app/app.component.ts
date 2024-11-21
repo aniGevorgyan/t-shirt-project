@@ -8,11 +8,13 @@ import * as fabric from "fabric";
 import {FabricCanvasHandlers} from "./fabric-canvas-handlers";
 import {ColorsComponent} from "../components/colors/colors.component";
 import {SideComponent} from "../components/side/side.component";
+import {UploadComponent} from "../components/upload/upload.component";
+import {QuantityComponent} from "../components/quantity/quantity.component";
 
 @Component({
     selector: 'app-root',
     standalone: true,
-    imports: [RouterOutlet, CommonModule, FormsModule, MatSelect, MatFormField, MatOption, ReactiveFormsModule, ColorsComponent, SideComponent,],
+    imports: [RouterOutlet, CommonModule, FormsModule, MatSelect, MatFormField, MatOption, ReactiveFormsModule, ColorsComponent, SideComponent, UploadComponent, QuantityComponent,],
     templateUrl: './app.component.html',
     styleUrl: './app.component.scss'
 })

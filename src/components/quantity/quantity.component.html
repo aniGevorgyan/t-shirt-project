@@ -1,0 +1,7 @@
+<p>Quantity by Size:</p>
+<div class="sizes-container">
+    <div *ngFor="let size of sizes; let i = index"  class="size">
+        <div class="count" onkeypress="return (this.innerText.length <= 2)"  contentEditable="true"></div>
+        <p class="label">{{size.label}}<br/><span class="additional-price" *ngIf="size.additional">+${{size.additional}}</span></p>
+    </div>
+</div>

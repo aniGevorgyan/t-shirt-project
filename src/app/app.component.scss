@@ -6,11 +6,9 @@ $container-width: 40%;
   margin: 0 auto;
   gap: 20px;
 
-  .actions {
+  .images {
+    flex: 1;
     background: white;
-    display: flex;
-    flex-direction: column;
-    gap: 20px;
     padding: 30px;
     border-radius: 10px;
     box-shadow: 0 10px 15px -3px rgba(0, 0, 0, .1), 0 4px 6px -4px rgba(0, 0, 0, .1);
@@ -20,42 +18,15 @@ $container-width: 40%;
       box-shadow: 0 20px 25px -5px rgba(0, 0, 0, .1), 0 8px 10px -6px rgba(0, 0, 0, .1);
     }
 
-    mat-form-field {
-      height: fit-content;
-    }
-  }
-
-  .images {
-    flex: 1;
-
-    .custom-file-upload {
+    .actions {
       display: flex;
-      width: fit-content;
-      margin-bottom: 20px;
+      flex-direction: column;
+      gap: 20px;
 
-      input {
-        display: none;
-      }
-      .upload-placeholder {
-        display: flex;
-        align-items: center;
-        cursor: pointer;
-        padding: 5px 15px;
-        border: 1px dashed gray;
-        border-radius: 10px;
-        background: #f5f8fa;
-        color: #1e252b;
-        transition: all .2s linear;
-
-        img {
-          width: 50px;
-          height: 50px;
-        }
-
-        &:hover {
-          background: #f1f1f1;
-          opacity: .6;
-        }
+      .title {
+        margin: 0;
+        padding: 0;
+        font-weight: 600;
       }
     }
 

@@ -1,0 +1,25 @@
+.custom-file-upload {
+  display: flex;
+  width: fit-content;
+  margin-top: 10px;
+
+  input {
+    display: none;
+  }
+  .upload-placeholder {
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+    padding: 5px 15px;
+    border: 1px dashed gray;
+    border-radius: 10px;
+    background: #f5f8fa;
+    color: #1e252b;
+    transition: all .2s linear;
+
+    &:hover {
+      background: #f1f1f1;
+      opacity: .6;
+    }
+  }
+}
