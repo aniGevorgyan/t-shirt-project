@@ -9,17 +9,9 @@ export interface IGap {
     left?: string;
 }
 
-export const types = [
-    {value: 'front', label: 'Front'},
-    {value: 'back', label: 'Back'},
-    {value: 'left', label: 'Left side'},
-    {value: 'right', label: 'Right side'},
-];
-
 export const gapsCoordinatesTShirt: IGap[] = [
-    {code: 'sdsd', url: null, height: '30', width: '30'},
-];
-
-export const gapsCoordinatesTCap: IGap[] = [
-    {code: 'front', url: null, height: '50', width: '80', left: '10', top: '20'},
+    {code: 'front', url: null, height: '150', width: '150', top: '140', left: '175'},
+    {code: 'back', url: null, height: '170', width: '170', top: '80', left: '160'},
+    {code: 'right', url: null, height: '50', width: '50', top: '130', left: '200'},
+    {code: 'left', url: null, height: '50', width: '50', top: '130', left: '250'},
 ];

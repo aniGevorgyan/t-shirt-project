@@ -1,0 +1,24 @@
+.gap {
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-position: center;
+  position: absolute;
+
+  &.answer_visible {
+    width: 100%;
+  }
+
+  &:hover {
+    > .close {
+      visibility: visible;
+    }
+  }
+
+  &--drag-end {
+    position: relative;
+  }
+
+  &--drag-wait {
+    outline: 1px dashed gray;
+  }
+}

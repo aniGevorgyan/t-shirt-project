@@ -1,0 +1,13 @@
+<div (dragover)="onDragOver($event)"
+     (drop)="onDropSuccess($event)"
+     [ngStyle]="{
+      width: item.height + 'px',
+      height: item.width + 'px',
+      top: item.top + 'px',
+      left: item.left + 'px',
+      }"
+     class="gap">
+    <canvas class="gap" id="myCanvas_{{item.code}}" width="{{item.height}}" height="{{item.height}}"></canvas>
+<!--    <img *ngIf="item?.url" (click)="removeGap(i)" alt="close" class="close-icon"-->
+<!--         src="/images/close.svg"/>-->
+</div>

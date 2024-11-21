@@ -3,18 +3,19 @@ import {RouterOutlet} from '@angular/router';
 import {CommonModule} from '@angular/common';
 import {FormsModule, ReactiveFormsModule} from "@angular/forms";
 import {MatFormField, MatOption, MatSelect} from "@angular/material/select";
-import {gapsCoordinatesTCap, gapsCoordinatesTShirt, IGap, types} from "./app.variables";
+import {gapsCoordinatesTShirt, IGap} from "./app.variables";
 import * as fabric from "fabric";
 import {FabricCanvasHandlers} from "./fabric-canvas-handlers";
 import {ColorsComponent} from "../components/colors/colors.component";
 import {SideComponent} from "../components/side/side.component";
 import {UploadComponent} from "../components/upload/upload.component";
 import {QuantityComponent} from "../components/quantity/quantity.component";
+import {GapComponent} from "../components/gap/gap.component";
 
 @Component({
     selector: 'app-root',
     standalone: true,
-    imports: [RouterOutlet, CommonModule, FormsModule, MatSelect, MatFormField, MatOption, ReactiveFormsModule, ColorsComponent, SideComponent, UploadComponent, QuantityComponent,],
+    imports: [RouterOutlet, CommonModule, FormsModule, MatSelect, MatFormField, MatOption, ReactiveFormsModule, ColorsComponent, SideComponent, UploadComponent, QuantityComponent, GapComponent,],
     templateUrl: './app.component.html',
     styleUrl: './app.component.scss'
 })
@@ -31,23 +32,23 @@ export class AppComponent implements AfterViewInit {
     protected handlers: FabricCanvasHandlers;
 
     ngAfterViewInit() {
-        this.canvas = new fabric.Canvas('myCanvas_0');
-        this.handlers = new FabricCanvasHandlers(this.canvas);
-
-        this.canvas.on('object:moving', (e: any) => {
-            this.handlers.onObjectMoving(e);
-        });
-
-        this.canvas.on('object:scaling', (e: any) => {
-            this.handlers.onObjectScaling(e);
-        });
-
-        this.canvas.on('mouse:out', (e: any) => {
-            this.hidePossibleGaps();
-        });
-        this.canvas.on('mouse:over', (e: any) => {
-            this.showPossibleGaps();
-        });
+        // this.canvas = new fabric.Canvas('myCanvas_0');
+        // this.handlers = new FabricCanvasHandlers(this.canvas);
+        //
+        // this.canvas.on('object:moving', (e: any) => {
+        //     this.handlers.onObjectMoving(e);
+        // });
+        //
+        // this.canvas.on('object:scaling', (e: any) => {
+        //     this.handlers.onObjectScaling(e);
+        // });
+        //
+        // this.canvas.on('mouse:out', (e: any) => {
+        //     this.hidePossibleGaps();
+        // });
+        // this.canvas.on('mouse:over', (e: any) => {
+        //     this.showPossibleGaps();
+        // });
 
     }
 
@@ -67,21 +68,9 @@ export class AppComponent implements AfterViewInit {
         return gapsCoordinatesTShirt;
     }
 
-    public onDragOver(event: any) {
-        event.preventDefault();
-    }
-
-    public onDropSuccess(event: any, index: number) {
-        event.preventDefault();
-        this.gapsArrays[index].url = event.dataTransfer.getData('url');
-        this.canvas.clear();
-        this.handlers.createImageFromCenter(event.dataTransfer.getData('url'));
-    }
-
     public onOptionDragStart(event: any, option: any, index: number) {
         event.dataTransfer.dropEffect = 'move';
         event.target.style.cursor = 'move';
-        event.dataTransfer.setData('url', option);
         this.dragOption = index;
         this.showPossibleGaps();
     }

@@ -16,8 +16,8 @@ export class FabricCanvasHandlers {
       const image = new fabric.Image(img, {
         centeredRotation: true,
         centeredScaling: true,
-        scaleY: 0.1,
-        scaleX: 0.1,
+        scaleY: 0.5,
+        scaleX: 0.5,
         perPixelTargetFind: false
       });
 
