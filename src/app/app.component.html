@@ -15,7 +15,7 @@
                      [class.dragging]="dragOption === i"
                      [draggable]="true"
                      class="dropbox-option">
-                    <img alt="close" class="close-icon" (click)="deleteImage(i)" src="/images/close.svg"/>
+                    <img (click)="deleteImage(i)" alt="close" class="close-icon" src="/images/close.svg"/>
                     <img alt="image" class="uploaded-image" src="{{option}}"/>
                 </div>
             </div>
@@ -26,9 +26,13 @@
     <div class="content">
         <div #vc class="gaps">
             <img alt="image" src="/images/t-shirt/{{color}}/{{side}}.jpg"/>
-                <div *ngFor="let gap of gapsArrays; index as i">
-                    <app-gap [class.visible]="side===gap.code" [item]="gap" (showAreaBorders)="showPossibleGaps()" (hideAreaBorders)="hidePossibleGaps()"></app-gap>
-                </div>
+            <div *ngFor="let gap of gapsArrays; index as i">
+                <app-gap (hideAreaBorders)="hidePossibleGaps()"
+                         (showAreaBorders)="showPossibleGaps()"
+                         [class.visible]="side===gap.code"
+                         [item]="gap">
+                </app-gap>
+            </div>
         </div>
     </div>
 </div>

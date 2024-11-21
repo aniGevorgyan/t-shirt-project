@@ -1,10 +1,9 @@
-import {AfterViewInit, ChangeDetectorRef, Component, ElementRef, ViewChild} from '@angular/core';
+import {ChangeDetectorRef, Component, ElementRef, ViewChild} from '@angular/core';
 import {RouterOutlet} from '@angular/router';
 import {CommonModule} from '@angular/common';
 import {FormsModule, ReactiveFormsModule} from "@angular/forms";
 import {MatFormField, MatOption, MatSelect} from "@angular/material/select";
 import {gapsCoordinatesTShirt, IGap} from "./app.variables";
-import * as fabric from "fabric";
 import {FabricCanvasHandlers} from "./fabric-canvas-handlers";
 import {ColorsComponent} from "../components/colors/colors.component";
 import {SideComponent} from "../components/side/side.component";
@@ -19,41 +18,24 @@ import {GapComponent} from "../components/gap/gap.component";
     templateUrl: './app.component.html',
     styleUrl: './app.component.scss'
 })
-export class AppComponent implements AfterViewInit {
+export class AppComponent {
     @ViewChild('vc', {static: true}) vc: ElementRef;
     public message: string;
     public imagePath: string;
     public color: string = 'black';
     public side: string = 'front';
-    protected canvas: any;
     public url: any;
     public imgArrays: any[] = [];
     public dragOption: number | null;
+    protected canvas: any;
     protected handlers: FabricCanvasHandlers;
-
-    ngAfterViewInit() {
-        // this.canvas = new fabric.Canvas('myCanvas_0');
-        // this.handlers = new FabricCanvasHandlers(this.canvas);
-        //
-        // this.canvas.on('object:moving', (e: any) => {
-        //     this.handlers.onObjectMoving(e);
-        // });
-        //
-        // this.canvas.on('object:scaling', (e: any) => {
-        //     this.handlers.onObjectScaling(e);
-        // });
-        //
-        // this.canvas.on('mouse:out', (e: any) => {
-        //     this.hidePossibleGaps();
-        // });
-        // this.canvas.on('mouse:over', (e: any) => {
-        //     this.showPossibleGaps();
-        // });
-
-    }
 
     constructor(public cdr: ChangeDetectorRef) {
 
+    }
+
+    public get gapsArrays(): IGap[] {
+        return gapsCoordinatesTShirt;
     }
 
     public onColorChange(e: string) {
@@ -62,10 +44,6 @@ export class AppComponent implements AfterViewInit {
 
     public onSideChange(e: string) {
         this.side = e;
-    }
-
-    public get gapsArrays(): IGap[] {
-        return gapsCoordinatesTShirt;
     }
 
     public onOptionDragStart(event: any, option: any, index: number) {
@@ -121,10 +99,4 @@ export class AppComponent implements AfterViewInit {
     public deleteImage(index: number) {
         this.imgArrays = this.imgArrays.filter((el, key) => key !== index);
     }
-
-    public removeGap(index: number) {
-        this.gapsArrays[index].url = null;
-        this.canvas.clear();
-    }
-
 }
