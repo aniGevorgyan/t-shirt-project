@@ -19,7 +19,7 @@
                     <img alt="image" class="uploaded-image" src="{{option}}"/>
                 </div>
             </div>
-            <app-quantity></app-quantity>
+            <button class="button" type="button" (click)="addText()">Add text</button>
         </div>
     </div>
 
@@ -30,6 +30,7 @@
                 <app-gap (hideAreaBorders)="hidePossibleGaps()"
                          (showAreaBorders)="showPossibleGaps()"
                          [class.visible]="side===gap.code"
+                         [text]="side===gap.code && textAdded"
                          [item]="gap">
                 </app-gap>
             </div>

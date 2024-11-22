@@ -25,8 +25,24 @@ export class FabricCanvasHandlers {
     }
   }
 
+  public onTextType() {
+    let textOptions = {
+      fontSize:16,
+      left:20,
+      top:20,
+      radius:10,
+      borderRadius: '25px',
+      hasRotatingPoint: true,
+      fill: 'red',
+    };
+
+    let textObject = new fabric.IText('Enter text here...', textOptions);
+    this.canvas.add(textObject);
+    this.canvas.renderAll();
+  }
+
   public onObjectMoving(e: any) {
-    var obj = e.target;
+    let obj = e.target;
     // if object is too big ignore
     if(obj.currentHeight > obj.canvas.height || obj.currentWidth > obj.canvas.width){
       return;
@@ -45,9 +61,9 @@ export class FabricCanvasHandlers {
   }
 
   public onObjectScaling(e: any) {
-      var obj = e.target;
+      let obj = e.target;
       obj.setCoords();
-      var brNew = obj.getBoundingRect();
+      let brNew = obj.getBoundingRect();
 
       if (((brNew.width+brNew.left)>=obj.canvas.width) || ((brNew.height+brNew.top)>=obj.canvas.height) || ((brNew.left<0) || (brNew.top<0))) {
         obj.left = this.left1;

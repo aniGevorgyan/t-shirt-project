@@ -2,19 +2,16 @@ import {ChangeDetectorRef, Component, ElementRef, ViewChild} from '@angular/core
 import {RouterOutlet} from '@angular/router';
 import {CommonModule} from '@angular/common';
 import {FormsModule, ReactiveFormsModule} from "@angular/forms";
-import {MatFormField, MatOption, MatSelect} from "@angular/material/select";
 import {gapsCoordinatesTShirt, IGap} from "./app.variables";
-import {FabricCanvasHandlers} from "./fabric-canvas-handlers";
 import {ColorsComponent} from "../components/colors/colors.component";
 import {SideComponent} from "../components/side/side.component";
 import {UploadComponent} from "../components/upload/upload.component";
-import {QuantityComponent} from "../components/quantity/quantity.component";
 import {GapComponent} from "../components/gap/gap.component";
 
 @Component({
     selector: 'app-root',
     standalone: true,
-    imports: [RouterOutlet, CommonModule, FormsModule, MatSelect, MatFormField, MatOption, ReactiveFormsModule, ColorsComponent, SideComponent, UploadComponent, QuantityComponent, GapComponent,],
+    imports: [RouterOutlet, CommonModule, FormsModule, ReactiveFormsModule, ColorsComponent, SideComponent, UploadComponent, GapComponent,],
     templateUrl: './app.component.html',
     styleUrl: './app.component.scss'
 })
@@ -24,11 +21,9 @@ export class AppComponent {
     public imagePath: string;
     public color: string = 'black';
     public side: string = 'front';
-    public url: any;
+    public textAdded: boolean;
     public imgArrays: any[] = [];
     public dragOption: number | null;
-    protected canvas: any;
-    protected handlers: FabricCanvasHandlers;
 
     constructor(public cdr: ChangeDetectorRef) {
 
@@ -42,8 +37,13 @@ export class AppComponent {
         this.color = e;
     }
 
+    public addText() {
+        this.textAdded = true;
+    }
+
     public onSideChange(e: string) {
         this.side = e;
+        this.textAdded = false;
     }
 
     public onOptionDragStart(event: any, option: any, index: number) {

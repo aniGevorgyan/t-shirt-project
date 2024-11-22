@@ -14,6 +14,11 @@ import {CommonModule} from "@angular/common";
 })
 export class GapComponent implements AfterViewInit {
   @Input() item: IGap;
+  @Input() set text(data: boolean) {
+    if(data) {
+      this.handlers.onTextType();
+    }
+  };
   @Output() showAreaBorders = new EventEmitter<void>();
   @Output() hideAreaBorders = new EventEmitter<void>();
   protected canvas: fabric.Canvas;
