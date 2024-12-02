@@ -1,17 +1,8 @@
 import {ChangeDetectorRef, Component, ElementRef, ViewChild} from '@angular/core';
-import {RouterOutlet} from '@angular/router';
-import {CommonModule} from '@angular/common';
-import {FormsModule, ReactiveFormsModule} from "@angular/forms";
 import {gapsCoordinatesTShirt, IGap} from "./app.variables";
-import {ColorsComponent} from "../components/colors/colors.component";
-import {SideComponent} from "../components/side/side.component";
-import {UploadComponent} from "../components/upload/upload.component";
-import {GapComponent} from "../components/gap/gap.component";
 
 @Component({
     selector: 'app-root',
-    standalone: true,
-    imports: [RouterOutlet, CommonModule, FormsModule, ReactiveFormsModule, ColorsComponent, SideComponent, UploadComponent, GapComponent,],
     templateUrl: './app.component.html',
     styleUrl: './app.component.scss'
 })
