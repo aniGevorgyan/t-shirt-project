@@ -6,6 +6,8 @@ import {UploadComponent} from "../components/upload/upload.component";
 import {GapComponent} from "../components/gap/gap.component";
 import {CommonModule} from "@angular/common";
 import {ProductService} from "../../services/product.service";
+import {ActivatedRoute} from "@angular/router";
+import {switchMap} from "rxjs";
 
 @Component({
   selector: 'app-product',
@@ -35,19 +37,22 @@ export class ProductComponent implements OnInit {
 
   constructor(
       public productService: ProductService,
+      public activateRoute: ActivatedRoute,
       public cdr: ChangeDetectorRef,
   ) {}
 
   ngOnInit() {
-    this.productService.getById('198').subscribe(res => {
-      if(res.success) {
-        this.product = res;
-        this.side = this.product.print_side[0];
-        this.color = this.product.colors[0];
-        this.setCurrentImage(res);
-        this.gaps = this.gapsArrays();
-      }
-    })
+    this.activateRoute.queryParams
+        .pipe(switchMap((data: any) => this.productService.getById(data.product_id)))
+        .subscribe(res => {
+          if(res.success) {
+            this.product = res;
+            this.side = this.product.print_side[0];
+            this.color = this.product.colors[0];
+            this.setCurrentImage(res);
+            this.gaps = this.gapsArrays();
+          }
+        })
   }
 
   public setCurrentImage(product: any) {
