@@ -1,4 +1,4 @@
-import {Component, EventEmitter, Output} from '@angular/core';
+import {Component, EventEmitter, Input, Output} from '@angular/core';
 import {NgForOf, NgIf, NgOptimizedImage} from "@angular/common";
 
 @Component({
@@ -13,17 +13,12 @@ import {NgForOf, NgIf, NgOptimizedImage} from "@angular/common";
   styleUrl: './side.component.scss'
 })
 export class SideComponent {
+  @Input() sides: any[] = [];
   @Output() change = new EventEmitter<string>;
   public activeIndex: number = 0;
-  public sides = [
-    {code: "front", label: "Front"},
-    {code: "back", label: "Back"},
-    {code: "right", label: "Right side"},
-    {code: "left", label: "Left side"},
-  ]
 
-  public setActive(i: number, code: string) {
+  public setActive(i: number, side: any) {
     this.activeIndex = i;
-    this.change.emit(code);
+    this.change.emit(side);
   }
 }

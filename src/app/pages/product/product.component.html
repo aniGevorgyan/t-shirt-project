@@ -1,0 +1,37 @@
+<div class="drop-zone">
+    <div class="content">
+        <div #vc class="gaps">
+            <img alt="image" [src]="currentImageUrl"/>
+            <div *ngFor="let gap of gapsArrays; index as i">
+                <app-gap (hideAreaBorders)="hidePossibleGaps()"
+                         (showAreaBorders)="showPossibleGaps()"
+                         [class.visible]="side===gap.code"
+                         [text]="side===gap.code && textAdded"
+                         [item]="gap">
+                </app-gap>
+            </div>
+        </div>
+    </div>
+
+    <div class="images">
+        <div class="actions">
+            <p class="title">{{ product?.title }}</p>
+            <p class="description" [innerHtml]="product?.short_desc"></p>
+            <app-colors [colors]="product?.colors" (change)="onColorChange($event)"></app-colors>
+            <app-side [sides]="product?.print_side" (change)="onSideChange($event)"></app-side>
+            <app-upload (onUpload)="onFileChange($event)"></app-upload>
+            <div class="dropbox-options">
+                <div (dragend)="onOptionDragEnd()"
+                     (dragstart)="onOptionDragStart($event, option, i)"
+                     *ngFor="let option of imgArrays; index as i"
+                     [class.dragging]="dragOption === i"
+                     [draggable]="true"
+                     class="dropbox-option">
+                    <img (click)="deleteImage(i)" alt="close" class="close-icon" src="/images/close.svg"/>
+                    <img alt="image" class="uploaded-image" src="{{option}}"/>
+                </div>
+            </div>
+            <button class="button" type="button" (click)="addText()">Add text</button>
+        </div>
+    </div>
+</div>

@@ -1,7 +1,0 @@
-<p>Side:</p>
-<div class="sides-container">
-    <div *ngFor="let side of sides; let i = index" class="side" (click)="setActive(i, side.code)" [class.active]="activeIndex==i">
-        {{side.label}}
-        <img *ngIf="activeIndex==i" class="icon__def" ngSrc="/images/check.svg" alt="side" width="15" height="15"/>
-    </div>
-</div>

@@ -3,10 +3,9 @@ import { BrowserModule } from '@angular/platform-browser';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import {ColorsComponent} from "../components/colors/colors.component";
-import {SideComponent} from "../components/side/side.component";
-import {UploadComponent} from "../components/upload/upload.component";
-import {GapComponent} from "../components/gap/gap.component";
+import {ProductService} from "./services/product.service";
+import {HttpClientModule} from "@angular/common/http";
+import {httpInterceptorProviders} from "./interceptors";
 
 @NgModule({
     declarations: [
@@ -15,12 +14,9 @@ import {GapComponent} from "../components/gap/gap.component";
     imports: [
         BrowserModule,
         AppRoutingModule,
-        ColorsComponent,
-        SideComponent,
-        UploadComponent,
-        GapComponent
+        HttpClientModule,
     ],
-    providers: [],
+    providers: [ProductService, httpInterceptorProviders],
     bootstrap: [AppComponent]
 })
 export class AppModule { }

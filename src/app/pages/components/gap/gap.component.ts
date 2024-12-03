@@ -1,9 +1,9 @@
 import {AfterViewInit, Component, EventEmitter, Input, Output} from '@angular/core';
-import {IGap} from "../../app/app.variables";
 import * as fabric from "fabric";
-import {FabricCanvasHandlers} from "../../app/fabric-canvas-handlers";
 import {ReactiveFormsModule} from "@angular/forms";
 import {CommonModule} from "@angular/common";
+import {FabricCanvasHandlers} from "../../../fabric-canvas-handlers";
+import {IGap} from "../../../app.variables";
 
 @Component({
   selector: 'app-gap',

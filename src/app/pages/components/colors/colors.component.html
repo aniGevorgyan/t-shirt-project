@@ -1,0 +1,6 @@
+<p>Material color:</p>
+<div class="colors-container">
+    <div *ngFor="let color of colors; let i = index" [ngStyle]="{background: color.hex}" class="color" (click)="setActive(i, color)" [class.active]="activeIndex==i">
+        <img *ngIf="activeIndex==i" class="icon__def" src="/images/check.svg" alt="side" width="15" height="15"/>
+    </div>
+</div>

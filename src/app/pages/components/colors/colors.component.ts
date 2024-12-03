@@ -12,15 +12,12 @@ import {CommonModule, NgOptimizedImage} from "@angular/common";
   styleUrl: './colors.component.scss'
 })
 export class ColorsComponent {
+  @Input() colors: any[] = [];
   @Output() change = new EventEmitter<string>;
   public activeIndex: number = 0;
-  public colors = [
-    {label: 'black', code: '#000'},
-    {label: 'green', code: '#a1e173'},
-  ]
 
-  public setActive(i: number, label: string) {
+  public setActive(i: number, color: any) {
     this.activeIndex = i;
-    this.change.emit(label);
+    this.change.emit(color);
   }
 }
