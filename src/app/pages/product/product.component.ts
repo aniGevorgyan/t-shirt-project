@@ -1,5 +1,5 @@
 import {ChangeDetectorRef, Component, ElementRef, OnInit, ViewChild} from '@angular/core';
-import {gapsCoordinatesTShirt, IGap} from "../../app.variables";
+import {IGap} from "../../app.variables";
 import {ColorsComponent} from "../components/colors/colors.component";
 import {SideComponent} from "../components/side/side.component";
 import {UploadComponent} from "../components/upload/upload.component";
@@ -11,7 +11,7 @@ import {ProductService} from "../../services/product.service";
   selector: 'app-product',
   standalone: true,
   imports: [
-      CommonModule,
+    CommonModule,
     ColorsComponent,
     SideComponent,
     UploadComponent,
@@ -24,13 +24,14 @@ export class ProductComponent implements OnInit {
   @ViewChild('vc', {static: true}) vc: ElementRef;
   public message: string;
   public imagePath: string;
-  public color: string;
-  public side: string;
+  public color: any;
+  public side: any;
   public textAdded: boolean;
   public imgArrays: any[] = [];
   public dragOption: number | null;
   public product: any;
   public currentImageUrl: string;
+  public gaps: IGap[] = [];
 
   constructor(
       public productService: ProductService,
@@ -41,7 +42,10 @@ export class ProductComponent implements OnInit {
     this.productService.getById('198').subscribe(res => {
       if(res.success) {
         this.product = res;
+        this.side = this.product.print_side[0];
+        this.color = this.product.colors[0];
         this.setCurrentImage(res);
+        this.gaps = this.gapsArrays();
       }
     })
   }
@@ -54,14 +58,27 @@ export class ProductComponent implements OnInit {
     return Object.values(massiveObject);
   }
 
-  public get gapsArrays(): IGap[] {
-    return gapsCoordinatesTShirt;
+  public gapsArrays(): IGap[] {
+    if(this.color?.images) {
+      let gaps = this.transformToArray(this.color?.images).map((el: any) => {
+        return {
+          code: this.product?.print_side.find((el2: any)=> el2.uploaded_file_type_id == el.id)?.id,
+          url: null,
+          height: +el.height,
+          width: +el.width,
+          top: +el.top,
+          left: +el.left,
+        }
+      })
+      return gaps;
+    }
+    return [];
   }
 
   public onColorChange(e: any) {
     this.color = e;
-    let side = this.side || this.product.print_side[0];
-    this.currentImageUrl = this.transformToArray(e.images).find((el: any) => el.id == side.uploaded_file_type_id)?.image;
+    this.gaps = this.gapsArrays();
+    this.currentImageUrl = this.transformToArray(e.images).find((el: any) => el.id == this.side.uploaded_file_type_id)?.image;
   }
 
   public addText() {
@@ -70,8 +87,8 @@ export class ProductComponent implements OnInit {
 
   public onSideChange(e: any) {
     this.side = e;
-    let color = this.color || this.product.colors[0];
-    this.currentImageUrl = this.transformToArray(color.images).find((el: any) => el.id == e.uploaded_file_type_id)?.image
+    this.gaps = this.gapsArrays();
+    this.currentImageUrl = this.transformToArray(this.color.images).find((el: any) => el.id == e.uploaded_file_type_id)?.image
     this.textAdded = false;
   }
 
@@ -98,6 +115,10 @@ export class ProductComponent implements OnInit {
         gap.classList.remove('gap--drag-wait');
       }
     });
+  }
+
+  public trackByFn(index: any) {
+    return index.id;
   }
 
   public onOptionDragEnd() {

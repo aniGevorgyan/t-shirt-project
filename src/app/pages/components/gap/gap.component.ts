@@ -26,6 +26,7 @@ export class GapComponent implements AfterViewInit {
   public showRemoveButton: boolean;
 
   ngAfterViewInit() {
+    console.log("gggggggg", this.item);
     this.canvas = new fabric.Canvas('myCanvas_' + this.item.code);
     this.handlers = new FabricCanvasHandlers(this.canvas);
 

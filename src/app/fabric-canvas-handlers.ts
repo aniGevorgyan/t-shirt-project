@@ -21,6 +21,8 @@ export class FabricCanvasHandlers {
         perPixelTargetFind: false
       });
 
+      image.scaleToWidth(100);
+
       this.canvas.add(image);
     }
   }

@@ -2,11 +2,11 @@
     <div class="content">
         <div #vc class="gaps">
             <img alt="image" [src]="currentImageUrl"/>
-            <div *ngFor="let gap of gapsArrays; index as i">
+            <div *ngFor="let gap of gaps; index as i; trackByFn">
                 <app-gap (hideAreaBorders)="hidePossibleGaps()"
                          (showAreaBorders)="showPossibleGaps()"
-                         [class.visible]="side===gap.code"
-                         [text]="side===gap.code && textAdded"
+                         [class.visible]="side.id===gap.code"
+                         [text]="side.id===gap.code && textAdded"
                          [item]="gap">
                 </app-gap>
             </div>
