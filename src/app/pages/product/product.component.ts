@@ -134,6 +134,9 @@ export class ProductComponent implements OnInit {
   public onFileChange(event: any) {
     this.message = '';
     const files = event.target.files;
+
+    // this.productService.uploadFile(files[0]).subscribe(res => {})
+
     if (files.length === 0)
       return;
 

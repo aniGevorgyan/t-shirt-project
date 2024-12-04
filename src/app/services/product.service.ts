@@ -7,10 +7,20 @@ import {Injectable} from "@angular/core";
     providedIn: 'root',
 })
 export class ProductService {
+    public mainUrl = 'https://demo.yansprint.com/api';
+
     public constructor(private http: HttpClient) {}
+
     public getById(id: string): Observable<any> {
-        const url = `https://demo.yansprint.com/api/product/${id}`;
+        const url = `${this.mainUrl}/product/${id}`;
         const params = new HttpParams();
         return this.http.get(url, { params });
+    }
+
+    public uploadFile(file: File): Observable<any> {
+        const url = `${this.mainUrl}/file-preview`;
+        const formData = new FormData();
+        formData.append('file', file, file.name);
+        return this.http.post(url, formData);
     }
 }
