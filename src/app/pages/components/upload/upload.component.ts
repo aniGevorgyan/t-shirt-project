@@ -18,6 +18,5 @@ export class UploadComponent {
 
   public afterUpload(e: any) {
     this.onUpload.emit(e);
-    this.loading = true;
   }
 }

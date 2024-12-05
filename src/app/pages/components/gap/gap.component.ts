@@ -55,7 +55,7 @@ export class GapComponent implements AfterViewInit {
   public onDropSuccess(event: any) {
     event.preventDefault();
     // this.item.url = event.dataTransfer.getData('url');
-    this.canvas.clear();
+    // this.canvas.clear();
     this.handlers.createImageFromCenter(event.dataTransfer.getData('url'));
   }
 
