@@ -32,6 +32,7 @@ export class ProductComponent implements OnInit {
     public dragOption: number | null;
     public product: any;
     public currentImageUrl: string;
+    public loaded: boolean;
     public gaps: IGap[] = [];
 
     constructor(
@@ -46,17 +47,21 @@ export class ProductComponent implements OnInit {
             .pipe(switchMap((data: any) => this.productService.getById(data.product_id)))
             .subscribe(res => {
                 if (res.success) {
+                    this.loaded = true;
                     this.product = res;
                     this.side = this.product.print_side[0];
                     this.color = this.product.colors[0];
                     this.setCurrentImage(res);
                     this.gaps = this.gapsArrays();
                 }
+                else {
+                    console.log("Product not found");
+                }
             })
     }
 
     public setCurrentImage(product: any) {
-        this.currentImageUrl = this.transformToArray(product?.colors[0].images).find((el: any) => el.id == product?.print_side[0].uploaded_file_type_id);
+        this.currentImageUrl = this.transformToArray(product?.colors[0].images).find((el: any) => el.id == product?.print_side[0].uploaded_file_type_id)?.image;
     }
 
     public transformToArray(massiveObject: any): any {
@@ -82,7 +87,7 @@ export class ProductComponent implements OnInit {
 
     public onColorChange(e: any) {
         this.color = e;
-        this.gaps = this.gapsArrays();
+        // this.gaps = this.gapsArrays();
         this.currentImageUrl = this.transformToArray(e.images).find((el: any) => el.id == this.side.uploaded_file_type_id)?.image;
     }
 
@@ -92,7 +97,7 @@ export class ProductComponent implements OnInit {
 
     public onSideChange(e: any) {
         this.side = e;
-        this.gaps = this.gapsArrays();
+        // this.gaps = this.gapsArrays();
         this.currentImageUrl = this.transformToArray(this.color.images).find((el: any) => el.id == e.uploaded_file_type_id)?.image
         this.textAdded = false;
     }
