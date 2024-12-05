@@ -19,7 +19,7 @@
             <p class="description" [innerHtml]="product?.short_desc"></p>
             <app-colors [colors]="product?.colors" (change)="onColorChange($event)"></app-colors>
             <app-side [sides]="product?.print_side" (change)="onSideChange($event)"></app-side>
-            <app-upload (onUpload)="onFileChange($event)"></app-upload>
+            <app-upload [loading]="loading" (onUpload)="onFileChange($event)"></app-upload>
             <div class="dropbox-options">
                 <div (dragend)="onOptionDragEnd()"
                      (dragstart)="onOptionDragStart($event, option, i)"

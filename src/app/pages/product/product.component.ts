@@ -33,6 +33,7 @@ export class ProductComponent implements OnInit {
     public product: any;
     public currentImageUrl: string;
     public loaded: boolean;
+    public loading: boolean;
     public gaps: IGap[] = [];
 
     constructor(
@@ -53,8 +54,7 @@ export class ProductComponent implements OnInit {
                     this.color = this.product.colors[0];
                     this.setCurrentImage(res);
                     this.gaps = this.gapsArrays();
-                }
-                else {
+                } else {
                     console.log("Product not found");
                 }
             })
@@ -142,16 +142,19 @@ export class ProductComponent implements OnInit {
 
     public onFileChange(event: any) {
         this.message = '';
+        this.loading = true;
         const files = event.target.files;
 
         if (files.length === 0)
             return;
 
-        this.productService.uploadFile(files[0]).subscribe(res => {
-            if (res.success) {
-                this.imgArrays.push(res.url);
-            }
-        })
+        this.productService.uploadFile(files[0])
+            .subscribe(res => {
+                if (res.success) {
+                    this.imgArrays.push(res.url);
+                    this.loading = false;
+                }
+            })
     }
 
     public deleteImage(index: number) {

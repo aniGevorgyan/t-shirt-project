@@ -2,6 +2,7 @@ Upload File here:
 <label class="custom-file-upload">
     <input (change)="afterUpload($event)" type="file"/>
     <div class="upload-placeholder">
-        <img class="icon__def" src="/images/upload.svg" width="50" height="50" alt="upload"/>
+        <app-loader *ngIf="loading"></app-loader>
+        <img  *ngIf="!loading" class="icon__def" src="/images/upload.svg" width="50" height="50" alt="upload"/>
     </div>
 </label>
