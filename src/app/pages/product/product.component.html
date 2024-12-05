@@ -1,7 +1,7 @@
 <div class="drop-zone">
     <div class="content">
         <div #vc class="gaps">
-            <img alt="image" [src]="currentImageUrl"/>
+            <img *ngIf="currentImageUrl" alt="image" [src]="currentImageUrl"/>
             <div *ngFor="let gap of gaps; index as i; trackByFn">
                 <app-gap (hideAreaBorders)="hidePossibleGaps()"
                          (showAreaBorders)="showPossibleGaps()"

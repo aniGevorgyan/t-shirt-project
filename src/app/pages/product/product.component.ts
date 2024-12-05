@@ -93,6 +93,10 @@ export class ProductComponent implements OnInit {
 
     public addText() {
         this.textAdded = true;
+        setTimeout(() => {
+            this.textAdded = false;
+            this.cdr.detectChanges();
+        }, 100);
     }
 
     public onSideChange(e: any) {
