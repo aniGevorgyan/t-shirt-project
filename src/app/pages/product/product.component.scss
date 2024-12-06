@@ -1,3 +1,24 @@
+@mixin scrollbars($size, $foreground-color, $background-color: mix($foreground-color, white,  50%)) {
+  // For Google Chrome
+  &::-webkit-scrollbar {
+    width:  $size;
+    height: $size;
+  }
+
+  &::-webkit-scrollbar-thumb {
+    background: $foreground-color;
+  }
+
+  &::-webkit-scrollbar-track {
+    background: $background-color;
+  }
+
+  & {
+    scrollbar-face-color: $foreground-color;
+    scrollbar-track-color: $background-color;
+  }
+}
+
 .drop-zone {
   display: flex;
   width: 1000px;
@@ -9,6 +30,9 @@
     background: white;
     padding: 30px;
     transition: all 100ms ease-in;
+    max-height: 600px;
+    overflow-y: auto;
+    @include scrollbars(.5em, #EEEEEE);
 
     &:hover {
       //box-shadow: 0 20px 25px -5px rgba(0, 0, 0, .1), 0 8px 10px -6px rgba(0, 0, 0, .1);
